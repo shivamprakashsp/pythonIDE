@@ -68,6 +68,7 @@ def index(request):
                 error = "Warning !! No file name given "
             y = input_part
             input_part = input_part.replace("\n"," ").split(" ")
+            # print(input_part)
             def input():
                 a = input_part[0]
                 del input_part[0]
@@ -75,7 +76,10 @@ def index(request):
             try:
                 orig_stdout = sys.stdout
                 sys.stdout = open('file.txt', 'w')
-                exec(code_part)
+                # print("before",input_part)
+                exec(code_part,{'input': input})
+                # print("after",input_part)
+
                 sys.stdout.close()
                 sys.stdout=orig_stdout
                 output = open('file.txt', 'r').read()
