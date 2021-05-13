@@ -88,13 +88,13 @@ def index(request):
                 sys.stdout.close()
                 sys.stdout=orig_stdout
                 output = e
-            print(output)
+            # print(output)
             newsnippet = form.save(commit=False)
             newsnippet.user = request.user
-            newsnippet
             newsnippet.save()
             initial = { "filename":request.POST['filename'], "text":request.POST['text'],"input":request.POST['input'],"output":output}
-            return render(request, 'index.html', {'form':SnippetForm(initial=initial),'error':error})
+            # return render(request, 'index.html', {'form':SnippetForm(initial=initial)})
+            return redirect(viewcode,newsnippet.id)
         except ValueError:
             return render(request, 'index.html', {'form':SnippetForm(), 'error':'Bad data passed in. Try again.'})
 
