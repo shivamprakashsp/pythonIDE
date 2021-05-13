@@ -11,7 +11,7 @@ Its an online Python IDE(with syntax highlighting) using which you can compile,r
 # See in action
 https://user-images.githubusercontent.com/50414046/118142505-12152800-b428-11eb-894e-7eaffe7e2238.mp4
 
-# Deployed website 
+# Deployed website (USE HTTP NOT HTTPS)
 http://pythonide.pythonanywhere.com/
 
 # How to build?
