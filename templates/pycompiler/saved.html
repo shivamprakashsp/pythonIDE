@@ -1,0 +1,27 @@
+{% extends "pycompiler/base.html" %} {% block content %}
+
+
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-10">
+    {% if codes %}
+        <div class="list-group">
+            <ol>
+            {% for code in codes %}
+                <a href="{% url 'viewcode' code.id %}" ><b><li>
+                    {{ code.filename }}
+                </li></a>
+            {% endfor %}
+            </ol>
+        </div>
+    {% else %}
+        <div class="text-center">
+            <h2>Looks like you don't have any saved Programms ! Nice work.</h2>
+        <br>
+        <a role="button" class="btn btn-primary" href="{% url 'indexpage' %}">New Python Program</a>
+        </div>
+    {% endif %}
+    </div>
+</div>
+
+{% endblock %}
