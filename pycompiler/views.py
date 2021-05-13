@@ -65,7 +65,7 @@ def index(request):
                 return render(request, 'index.html', {'form':SnippetForm(), 'error':'Bad data passed in. Try again.'})
             fn = request.POST['filename']
             if fn == "None":
-                error = "Warning !! No file name given "
+                return render(request, 'index.html', {'form':SnippetForm(), 'error':'Please enter filename'})
             y = input_part
             input_part = input_part.replace("\n"," ").split(" ")
             # print(input_part)
@@ -91,6 +91,7 @@ def index(request):
             # print(output)
             newsnippet = form.save(commit=False)
             newsnippet.user = request.user
+            newsnippet.output = output
             newsnippet.save()
             initial = { "filename":request.POST['filename'], "text":request.POST['text'],"input":request.POST['input'],"output":output}
             # return render(request, 'index.html', {'form':SnippetForm(initial=initial)})
@@ -113,6 +114,11 @@ def viewcode(request, code_pk):
             #Compilation 
             code_part = request.POST['text']
             input_part = request.POST['input']
+            if code_part == "None":
+                return render(request, 'index.html', {'form':SnippetForm(), 'error':'Bad data passed in. Try again.'})
+            fn = request.POST['filename']
+            if fn == "None":
+                return render(request, 'index.html', {'form':SnippetForm(), 'error':'Please enter filename'})
             y = input_part
             input_part = input_part.replace("\n"," ").split(" ")
             def input():
@@ -122,7 +128,7 @@ def viewcode(request, code_pk):
             try:
                 orig_stdout = sys.stdout
                 sys.stdout = open('file.txt', 'w')
-                exec(code_part)
+                exec(code_part,{'input': input})
                 sys.stdout.close()
                 sys.stdout=orig_stdout
                 output = open('file.txt', 'r').read()
