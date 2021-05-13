@@ -21,3 +21,8 @@ After installing python please do 'pip install django pillow' if the above requi
 - Step 1 - Clone this repo into your local machine ( git clone )
 - Step 2 - Goto the project repo and do python manage.py runserver 
  
+# Todo
+- [ ] Add better warning messages for the user.
+- [ ] Add docstrings.
+- [ ] Other Popular Languages support
+- [ ] UI more interactive
